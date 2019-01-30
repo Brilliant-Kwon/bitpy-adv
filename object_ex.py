@@ -65,9 +65,65 @@ def object_id():
 
     lst1 = [1, 2, 3]
     lst2 = [1, 2, 3]
-    print("nutable:", hex(id(lst1)), hex(id(lst2)))
+    print("mutable:", hex(id(lst1)), hex(id(lst2)))
+
+    print("i1 === i2 ?", i1 == i2)  # ==값의 비교(동등성)
+    print("i1 is i2 ?", i1 is i2)  # is ID 비교 (동일성)
+
+    print("lst1 == lst2 ? ", lst1 == lst2)
+    print("lst1 is lst2 ? ", lst1 is lst2)  # mutable
+
+
+def object_copy():
+    """객체의 복사"""
+
+    # 단순 레퍼런스 복사
+    a = 1
+    b = a
+
+    a = [1, 2, 3]
+    b = [4, 5, 6]
+    c = [a, b, 100]
+
+    print(c)
+    d = c
+    print(d)
+    c[2] = 200
+    print("c:", c)
+    print("d:", d)
+    print(c is d)
+
+    c[2] = 300
+    print("c:", c)
+    print("d:", d)
+
+    import copy
+    d = copy.copy(c)  # 얕은 카피(shallow copy)
+    print("c:", c)
+    print("d:", d)
+    print(c is d)
+
+    c[2] = 300
+    print("c:", c)
+    print("d:", d)
+
+    print(id(c[0]) == id(d[0]))  # 이 둘은 같은 객체
+    c[0][1] = 10
+    print("c:", c)
+    print("d:", d)
+
+    # 깊은 복사 : deep copy
+    d = copy.deepcopy(c)
+    print("c:", c)
+    print("d:", d)
+    print(id(c[0]) == id(d[0]))
+
+    c[0][1] = 20  # 영향을 미치지 않는다. 완전 분리 됬기 때문
+    print("c:", c)
+    print("d:", d)
 
 
 # symbol_table()
 # ref_count()
-object_id()
+# object_id()
+object_copy()
