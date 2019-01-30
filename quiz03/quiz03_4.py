@@ -5,7 +5,7 @@ in this guide, then the Python Mentors
 group is available to help guide new contributors through the process.
 """
 
-strings = s.upper().replace("," or "." or "\n", "").split()
+strings = s.upper().replace(",", "").replace(".", "").replace("\n", "").split()
 print(strings)
 count = dict()
 
