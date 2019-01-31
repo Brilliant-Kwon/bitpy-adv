@@ -1,6 +1,6 @@
 # 모듈 임포트 : 모듈명을 이름공간
 import math
-import mymod
+import mymod  # 임포트했을때 __name__출력하게 해놓음
 
 print(math.pi, mymod.pi)  # 이름 공간이 다름
 
