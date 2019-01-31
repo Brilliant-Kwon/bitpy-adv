@@ -73,7 +73,53 @@ def practices():  # 응용
     f.close()
 
 
+def binary_copy():
+    """이진 파일을 열어서 다른 이름으로 복사"""
+    f = open("C:\\Users\\k1212\\bitacademy\\bitpy-adv\\samples\\rose-flower.jpeg", "rb")
+    data = f.read()
+    f.close()
+    f_dest = open("C:\\Users\\k1212\\bitacademy\\bitpy-adv\\samples\\rose-flower_copy.jpeg", "wb")
+    f_dest.write(data)
+    f_dest.close()
+
+
+def using_with():
+    with open("C:\\Users\\k1212\\bitacademy\\bitpy-adv\\samples\\multiline.txt") as f:
+        for line in f.readlines():
+            print(line.strip())
+
+    print("is file closed?", f.closed)
+
+
+def using_pickle():
+    f_name = "C:\\Users\\k1212\\bitacademy\\bitpy-adv\\samples\\players.bin"
+    data = {"baseball": 9}  # 객체 생성
+
+    import pickle
+
+    # data를 피클로 저장해 봅시다.
+    with open(f_name, "wb") as f:
+        pickle.dump(data, f)
+        pickle.dump({"soccer": 11}, f, 2)  # 프로토콜 버전 지정 : 2
+        pickle.dump({"basketball": 5}, f, pickle.HIGHEST_PROTOCOL)  # 최신버전
+
+    # 피클 데이터 불러오기
+    with open(f_name, "rb") as f:
+        result = []
+        while True:
+            try:
+                data = pickle.load(f)
+                result.append(data)
+            except EOFError:  # 더이상 불러올 내용이 없을 경우
+                break
+
+        print(result)
+
+
 create_home()
 write_text()
 read_text()
 practices()
+binary_copy()
+using_with()
+using_pickle()
