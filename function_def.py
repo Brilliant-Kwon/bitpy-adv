@@ -22,7 +22,6 @@ print(callable(fun))
 
 if callable(fun): print(fun(10, 20))
 
-
 # 함수의 return
 def bigger(a, b):
     if a > b:
